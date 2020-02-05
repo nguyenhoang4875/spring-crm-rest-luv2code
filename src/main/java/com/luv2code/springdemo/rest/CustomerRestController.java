@@ -36,5 +36,18 @@ public class CustomerRestController {
         return customer;
     }
 
+    // add mapping for Post /customers - add new customer
+
+    @PostMapping("/customers")
+    public Customer addCustomer(@RequestBody Customer customer){
+
+        // also just in case the pass an id in JSON .. set id to 0
+        // this is force a save of new item .. instead of update
+        customer.setId(0);
+
+        customerService.saveCustomer(customer);
+
+        return customer;
+    }
 
 }
